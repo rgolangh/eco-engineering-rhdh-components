@@ -1,0 +1,76 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: openshift-cluster-template
+  title: OpenShift Cluster Template
+  description: A template for creating a new OpenShift cluster configuration.
+spec:
+  owner: user:default/rgolangh
+  type: service
+
+  parameters:
+    - title: Cluster Details
+      required:
+        - cluster_name
+        - openshift_version
+        - public_rsa_key
+      properties:
+        cluster_name:
+          title: Cluster Name
+          type: string
+          description: Name of the new OpenShift cluster.
+        number_of_nodes:
+          title: Number of Nodes
+          type: integer
+          default: 0
+          description: The number of nodes in the cluster.
+        openshift_version:
+          title: OpenShift Version
+          type: string
+          description: The version of OpenShift.
+          enum:
+            - "4.17.26"
+            - "4.18.21"
+            - "4.19.1"
+        public_rsa_key:
+          title: Public RSA Key (base64)
+          type: string
+          description: The public RSA key for SSH access in base64 format.
+          ui:widget: textarea
+
+    - title: Destination
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Destination Repository URL
+          type: string
+          description: The URL of the GitLab repository with the cluster definitions
+          default: https://gitlab.cee.redhat.com/eco-special-projects/eco-engineering-cluster
+
+  steps:
+    - id: fetch-skeleton
+      name: Fetch Skeleton
+      action: fetch:template
+      input:
+        url: ./skeleton
+        targetPath: ${{ parameters.cluster_name }}
+        values:
+          cluster_name: ${{ parameters.cluster_name }}
+          number_of_nodes: ${{ parameters.number_of_nodes }}
+          openshift_version: ${{ parameters.openshift_version }}
+          public_rsa_key: ${{ parameters.public_rsa_key }}
+
+    - id: publish
+      name: Publish to GitLab
+      action: publish:gitlab:merge-request
+      input:
+        repoUrl: ${{ parameters.repoUrl }}
+        branchName: create-cluster-${{ parameters.cluster_name }}
+        title: 'feat: Create new cluster ${{ parameters.cluster_name }}'
+        description: |
+          This MR creates the initial configuration for the new OpenShift cluster:
+          - **Cluster Name:** `${{ parameters.cluster_name }}`
+          - **OpenShift Version:** `${{ parameters.openshift_version }}`
+          - **Number of Nodes:** `${{ parameters.number_of_nodes }}`
+        targetPath: 'clusters'

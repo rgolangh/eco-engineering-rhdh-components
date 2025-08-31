@@ -1,0 +1,25 @@
+apiVersion: hypershift.openshift.io/v1beta1
+kind: NodePool
+metadata:
+  name: ${{ values.cluster_name }}-nodepool
+  namespace: clusters
+spec:
+  clusterName: ${{ values.cluster_name }}
+  replicas: ${{ values.number_of_nodes }}
+  management:
+    upgradeType: Replace
+  platform:
+    kubevirt:
+      attachDefaultNetwork: true
+      compute:
+        cores: 2
+        memory: 8Gi
+        qosClass: Burstable
+      networkInterfaceMultiqueue: Enable
+      rootVolume:
+        persistent:
+          size: 32Gi
+        type: Persistent
+    type: KubeVirt
+  release:
+    image: quay.io/openshift-release-dev/ocp-release:${{ values.openshift_version }}-multi
