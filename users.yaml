@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: rgolangh
+spec:
+  profile:
+    displayName: Roy Golan
+    email: rgolan@redhat.com
+  memberOf: []
+---
