@@ -6,4 +6,5 @@ metadata:
     github.com/project-slug: rgolangh/eco-engineering-rhdh-componenents
 spec:
   type: other
-  lifecycle: unknown
+  owner: user:default/rgolangh
+  lifecycle: production
