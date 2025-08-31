@@ -1,9 +1,9 @@
-# catalog-info.yaml
 apiVersion: backstage.io/v1alpha1
-kind: Location
+kind: Component
 metadata:
-  name: openshift-cluster-template-location
-  description: A template for creating a new OpenShift cluster configuration.
+  name: eco-engineering-rhdh-componenents
+  annotations:
+    github.com/project-slug: rgolangh/eco-engineering-rhdh-componenents
 spec:
-  targets:
-    - ./template.yaml
+  type: other
+  lifecycle: unknown
