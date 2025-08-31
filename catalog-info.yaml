@@ -1,0 +1,9 @@
+# catalog-info.yaml
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: openshift-cluster-template-location
+  description: A template for creating a new OpenShift cluster configuration.
+spec:
+  targets:
+    - ./template.yaml
