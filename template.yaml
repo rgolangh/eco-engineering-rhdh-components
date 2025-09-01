@@ -64,5 +64,5 @@ spec:
           - **Cluster Name:** `${{ parameters.cluster_name }}`
           - **OpenShift Version:** `${{ parameters.openshift_version }}`
           - **Number of Nodes:** `${{ parameters.number_of_nodes }}`
-        targetPath: 'clusters/${{ parameters.cluster_name }}'
-        commitAction: create
+        targetPath: ./clusters/${{ parameters.cluster_name }}
+        commitAction: auto
