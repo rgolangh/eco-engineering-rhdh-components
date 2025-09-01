@@ -38,7 +38,7 @@ spec:
           description: The public RSA key for SSH access in base64 format.
           ui:widget: textarea
 
-    steps:
+  steps:
     - id: fetch-skeleton
       name: Fetch Skeleton
       action: fetch:template
