@@ -54,7 +54,7 @@ spec:
       name: Publish to GitLab
       action: publish:gitlab:merge-request
       input:
-        repoUrl: 'gitlab.cee.redhat.com?group=eco-special-projects&repo=eco-engineering-cluster'
+        repoUrl: 'gitlab.cee.redhat.com?owner=eco-special-projects&repo=eco-engineering-cluster&projecid=117861'
         projectid: "117861"
         branchName: create-cluster-${{ parameters.cluster_name }}
         title: 'feat: Create new cluster ${{ parameters.cluster_name }}'
