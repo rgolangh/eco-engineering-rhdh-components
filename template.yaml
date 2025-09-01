@@ -38,21 +38,7 @@ spec:
           description: The public RSA key for SSH access in base64 format.
           ui:widget: textarea
 
-    - title: Destination
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: Destination Repository URL
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - gitlab.cee.redhat.com
-          description: The URL of the GitLab repository with the cluster definitions
-          default: https://gitlab.cee.redhat.com/eco-special-projects/eco-engineering-cluster
-
-  steps:
+    steps:
     - id: fetch-skeleton
       name: Fetch Skeleton
       action: fetch:template
@@ -69,7 +55,7 @@ spec:
       name: Publish to GitLab
       action: publish:gitlab
       input:
-        repoUrl: ${{ parameters.repoUrl }}
+        repoUrl: 'https://gitlab.cee.redhat.com/eco-special-projects/eco-engineering-cluster'
         branchName: create-cluster-${{ parameters.cluster_name }}
         title: 'feat: Create new cluster ${{ parameters.cluster_name }}'
         description: |
