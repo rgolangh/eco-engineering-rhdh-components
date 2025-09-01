@@ -66,4 +66,4 @@ spec:
           - **Number of Nodes:** `${{ parameters.number_of_nodes }}`
         sourcePath: "${{ steps.fetch.output.targetPath }}"
         targetPath: ./clusters/${{ parameters.cluster_name }}
-        commitAction: upsert
+        commitAction: auto
