@@ -65,4 +65,4 @@ spec:
           - **OpenShift Version:** `${{ parameters.openshift_version }}`
           - **Number of Nodes:** `${{ parameters.number_of_nodes }}`
         targetPath: ./clusters/${{ parameters.cluster_name }}
-        commitAction: auto
+        commitAction: update
