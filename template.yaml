@@ -53,7 +53,7 @@ spec:
 
     - id: publish
       name: Publish to GitLab
-      action: publish:gitlab
+      action: publish:merge-request
       input:
         repoUrl: 'gitlab.cee.redhat.com/eco-special-projects/eco-engineering-cluster'
         branchName: create-cluster-${{ parameters.cluster_name }}
