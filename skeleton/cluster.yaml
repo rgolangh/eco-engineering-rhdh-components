@@ -1,7 +1,7 @@
 apiVersion: hypershift.openshift.io/v1beta1
 kind: HostedCluster
 metadata:
-  name: {{ values.cluster_name }}
+  name: ${{ values.cluster_name }}
   namespace: clusters
 spec:
   autoscaling: {}
@@ -16,7 +16,7 @@ spec:
         type: PersistentVolume
     managementType: Managed
   fips: false
-  infraID: {{ values.cluster_name }}
+  infraID: ${{ values.cluster_name }}
   issuerURL: https://kubernetes.default.svc
   networking:
     clusterNetwork:
@@ -29,7 +29,7 @@ spec:
   platform:
     kubevirt:
       baseDomainPassthrough: true
-      generateID: {{ values.cluster_name }}
+      generateID: ${{ values.cluster_name }}
       storageDriver:
         manual:
           storageClassMapping:
@@ -40,9 +40,9 @@ spec:
   pullSecret:
     name: gitops-pullsecret
   release:
-    image: quay.io/openshift-release-dev/ocp-release:{{ values.openshift_version }}-multi
+    image: quay.io/openshift-release-dev/ocp-release:${{ values.openshift_version }}-multi
   sshKey:
-    name: sshkey-cluster-{{ values.cluster_name }}
+    name: sshkey-cluster-${{ values.cluster_name }}
   services:
     - service: APIServer
       servicePublishingStrategy:

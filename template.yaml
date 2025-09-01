@@ -49,6 +49,7 @@ spec:
           number_of_nodes: ${{ parameters.number_of_nodes }}
           openshift_version: ${{ parameters.openshift_version }}
           public_rsa_key: ${{ parameters.public_rsa_key }}
+        targetPath: ./clusters/${{ parameters.cluster_name }}
 
     - id: publish
       name: Publish to GitLab
@@ -64,6 +65,6 @@ spec:
           - **Cluster Name:** `${{ parameters.cluster_name }}`
           - **OpenShift Version:** `${{ parameters.openshift_version }}`
           - **Number of Nodes:** `${{ parameters.number_of_nodes }}`
-        sourcePath: "${{ steps.fetch.output.targetPath }}"
+        sourcePath: ./clusters/${{ parameters.cluster_name }}
         targetPath: ./clusters/${{ parameters.cluster_name }}
         commitAction: auto
