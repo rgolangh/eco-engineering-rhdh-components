@@ -45,6 +45,10 @@ spec:
         repoUrl:
           title: Destination Repository URL
           type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - gitlab.cee.redhat.com
           description: The URL of the GitLab repository with the cluster definitions
           default: https://gitlab.cee.redhat.com/eco-special-projects/eco-engineering-cluster
 
@@ -54,7 +58,7 @@ spec:
       action: fetch:template
       input:
         url: ./skeleton
-        targetPath: ${{ parameters.cluster_name }}
+        targetPath: .
         values:
           cluster_name: ${{ parameters.cluster_name }}
           number_of_nodes: ${{ parameters.number_of_nodes }}
@@ -63,7 +67,7 @@ spec:
 
     - id: publish
       name: Publish to GitLab
-      action: publish:gitlab:merge-request
+      action: publish:gitlab
       input:
         repoUrl: ${{ parameters.repoUrl }}
         branchName: create-cluster-${{ parameters.cluster_name }}
@@ -73,4 +77,5 @@ spec:
           - **Cluster Name:** `${{ parameters.cluster_name }}`
           - **OpenShift Version:** `${{ parameters.openshift_version }}`
           - **Number of Nodes:** `${{ parameters.number_of_nodes }}`
-        targetPath: 'clusters'
+        targetPath: 'clusters/${{ parameters.cluster_name }}'
+        commitAction: create
