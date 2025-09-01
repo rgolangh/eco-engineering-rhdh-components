@@ -44,7 +44,6 @@ spec:
       action: fetch:template
       input:
         url: https://github.com/rgolangh/eco-engineering-rhdh-components
-        targetPath: skeleton
         values:
           cluster_name: ${{ parameters.cluster_name }}
           number_of_nodes: ${{ parameters.number_of_nodes }}
