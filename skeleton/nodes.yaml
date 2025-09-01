@@ -1,11 +1,11 @@
 apiVersion: hypershift.openshift.io/v1beta1
 kind: NodePool
 metadata:
-  name: ${{ values.cluster_name }}-nodepool
+  name: {{ values.cluster_name }}-nodepool
   namespace: clusters
 spec:
-  clusterName: ${{ values.cluster_name }}
-  replicas: ${{ values.number_of_nodes }}
+  clusterName: {{ values.cluster_name }}
+  replicas: {{ values.number_of_nodes }}
   management:
     upgradeType: Replace
   platform:
@@ -22,4 +22,4 @@ spec:
         type: Persistent
     type: KubeVirt
   release:
-    image: quay.io/openshift-release-dev/ocp-release:${{ values.openshift_version }}-multi
+    image: quay.io/openshift-release-dev/ocp-release:{{ values.openshift_version }}-multi
