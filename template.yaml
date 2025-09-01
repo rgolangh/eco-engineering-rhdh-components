@@ -37,6 +37,17 @@ spec:
           type: string
           description: The public RSA key for SSH access in base64 format.
           ui:widget: textarea
+    - title: Target Repository
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Target GitLab Repository
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - gitlab.cee.redhat.com
 
   steps:
     - id: fetch
@@ -55,8 +66,7 @@ spec:
       name: Publish to GitLab
       action: publish:gitlab:merge-request
       input:
-        repoUrl: 'gitlab.cee.redhat.com?owner=eco-special-projects&repo=eco-engineering-cluster&projecid=117861'
-        projectId: 117861
+        repoUrl: ${{ parameters.repoUrl }}
         branchName: create-cluster-${{ parameters.cluster_name }}
         targetBranchName: main
         title: 'feat: Create new cluster ${{ parameters.cluster_name }}'
