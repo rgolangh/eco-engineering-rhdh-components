@@ -24,6 +24,7 @@ spec:
           type: integer
           default: 0
           description: The number of nodes in the cluster.
+          maximum: 4
         openshift_version:
           title: OpenShift Version
           type: string
