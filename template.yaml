@@ -61,16 +61,15 @@ spec:
       name: Publish to GitLab
       action: publish:gitlab:merge-request
       input:
-        allowedHosts:
-          - gitlab.cee.redhat.com
+        allowedHosts: ['gitlab.cee.redhat.com']
         repoUrl: gitlab.cee.redhat.com?owner=eco-special-projects&repo=eco-engineering-cluster
         targetBranch: main
         branchName: create-cluster-${{ parameters.cluster_name }}
-        title: 'feat: Create new cluster ${{ parameters.cluster_name }}'
+        title: "feat: Create new cluster ${{ parameters.cluster_name }}"
         description: |
           This MR creates the initial configuration for the new OpenShift cluster:
-          - **Cluster Name:** `${{ parameters.cluster_name }}`
-          - **OpenShift Version:** `${{ parameters.openshift_version }}`
-          - **Number of Nodes:** `${{ parameters.number_of_nodes }}`
+          - **Cluster Name:** ${{ parameters.cluster_name }}
+          - **OpenShift Version:** ${{ parameters.openshift_version }}
+          - **Number of Nodes:** ${{ parameters.number_of_nodes }}
         sourcePath: .
         targetPath: clusters/${{ parameters.cluster_name }}
