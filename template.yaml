@@ -57,7 +57,7 @@ spec:
       input:
         allowedHosts:
           - gitlab.cee.redhat.com
-        repoUrl: gitlab.cee.redhat.com?owner=eco-special-projectst&repo=eco-engineering-cluster
+        repoUrl: gitlab.cee.redhat.com?owner=eco-special-projects&repo=eco-engineering-cluster
         targetBranch: main
         branchName: create-cluster-${{ parameters.cluster_name }}
         title: 'feat: Create new cluster ${{ parameters.cluster_name }}'
