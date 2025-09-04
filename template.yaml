@@ -39,18 +39,6 @@ spec:
           type: string
           description: The public RSA key for SSH access in base64 format.
           ui:widget: textarea
-    - title: Target Repository
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: Target GitLab Repository
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            allowedHosts:
-              - gitlab.cee.redhat.com
-
   steps:
     - id: fetch
       name: Fetch Skeleton
@@ -70,9 +58,9 @@ spec:
       input:
         allowedHosts:
               - gitlab.cee.redhat.com
-        repoUrl: ${{ parameters.repoUrl }}
+        repoUrl: gitlab.cee.redhat.com?owner=eco-special-projectst&repo=eco-engineering-cluster
+        targetBranch: main
         branchName: create-cluster-${{ parameters.cluster_name }}
-        targetBranchName: main
         title: 'feat: Create new cluster ${{ parameters.cluster_name }}'
         description: |
           This MR creates the initial configuration for the new OpenShift cluster:
