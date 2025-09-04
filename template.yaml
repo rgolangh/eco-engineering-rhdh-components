@@ -51,6 +51,12 @@ spec:
           openshift_version: ${{ parameters.openshift_version }}
           public_rsa_key: ${{ parameters.public_rsa_key }}
 
+    - id: sleep
+      name: Wait for 30 seconds
+      action: roadiehq:utils:sh
+      input:
+        command: 'sleep 30'
+
     - id: publish
       name: Publish to GitLab
       action: publish:gitlab:merge-request
