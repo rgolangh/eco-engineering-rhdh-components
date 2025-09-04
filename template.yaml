@@ -68,6 +68,8 @@ spec:
       name: Publish to GitLab
       action: publish:gitlab:merge-request
       input:
+        allowedHosts:
+              - gitlab.cee.redhat.com
         repoUrl: ${{ parameters.repoUrl }}
         branchName: create-cluster-${{ parameters.cluster_name }}
         targetBranchName: main
