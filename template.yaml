@@ -50,14 +50,13 @@ spec:
           number_of_nodes: ${{ parameters.number_of_nodes }}
           openshift_version: ${{ parameters.openshift_version }}
           public_rsa_key: ${{ parameters.public_rsa_key }}
-        targetPath: ./clusters/${{ parameters.cluster_name }}
 
     - id: publish
       name: Publish to GitLab
       action: publish:gitlab:merge-request
       input:
         allowedHosts:
-              - gitlab.cee.redhat.com
+          - gitlab.cee.redhat.com
         repoUrl: gitlab.cee.redhat.com?owner=eco-special-projectst&repo=eco-engineering-cluster
         targetBranch: main
         branchName: create-cluster-${{ parameters.cluster_name }}
@@ -67,5 +66,5 @@ spec:
           - **Cluster Name:** `${{ parameters.cluster_name }}`
           - **OpenShift Version:** `${{ parameters.openshift_version }}`
           - **Number of Nodes:** `${{ parameters.number_of_nodes }}`
-        sourcePath: ./clusters/${{ parameters.cluster_name }}
+        sourcePath: .
         targetPath: clusters/${{ parameters.cluster_name }}
