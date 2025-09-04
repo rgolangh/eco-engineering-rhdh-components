@@ -55,7 +55,7 @@ spec:
       name: Wait for 30 seconds
       action: debug:wait
       input:
-        seconds: 30
+        seconds: 10
     
     - id: publish
       name: Publish to GitLab
