@@ -53,10 +53,10 @@ spec:
 
     - id: sleep
       name: Wait for 30 seconds
-      action: roadiehq:utils:sh
+      action: debug:wait
       input:
-        command: 'sleep 30'
-
+        seconds: 30
+    
     - id: publish
       name: Publish to GitLab
       action: publish:gitlab:merge-request
